@@ -120,15 +120,20 @@ function ZeenatApp() {
   const [category, setCategory] = useState("Sab");
   const [saleOnly, setSaleOnly] = useState(false);
   const [scanOpen, setScanOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   const filtered = useMemo(
     () =>
       PRODUCTS.filter(
         (p) =>
           (category === "Sab" || p.category === category) &&
-          (!saleOnly || p.tag === "sale"),
+          (!saleOnly || p.tag === "sale") &&
+          (!search.trim() ||
+            `${p.name} ${p.category} ${p.brand}`
+              .toLowerCase()
+              .includes(search.trim().toLowerCase())),
       ),
-    [category, saleOnly],
+    [category, saleOnly, search],
   );
 
   return (
