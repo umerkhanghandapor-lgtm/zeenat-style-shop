@@ -282,7 +282,7 @@ function ZeenatApp() {
 
       {/* Products */}
       <main className="mx-auto max-w-6xl px-4 py-10">
-        <div className="mb-6 flex items-end justify-between">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 className="font-display text-3xl font-bold sm:text-4xl">
               {saleOnly ? "Sale Items" : category === "Sab" ? "Hamari Collection" : category}
@@ -290,6 +290,16 @@ function ZeenatApp() {
             <p className="mt-1 text-sm text-muted-foreground">
               {filtered.length} items · 12 brands · Cash on Delivery
             </p>
+          </div>
+          <div className="relative w-full max-w-xs">
+            <SearchIcon className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Kya dhoond rahe hain?"
+              aria-label="Products search karein"
+              className="w-full rounded-full border border-border bg-card py-2.5 pr-4 pl-9 text-sm outline-none transition placeholder:text-muted-foreground focus:border-gold"
+            />
           </div>
         </div>
 
