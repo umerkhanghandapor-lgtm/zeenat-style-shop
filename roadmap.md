@@ -4,4 +4,5 @@
 - [x] Home page: hero, categories, products, sale, delivery, WhatsApp, scanner
 - [x] More product photos (caps, umbrella, bracelet, more items) + prices
 - [x] Verify build OK
+- [x] One combined modern app named Zeenat Collection (user confirmed)
 - [ ] User: apna asli WhatsApp number batayein (abhi placeholder number laga hai)
