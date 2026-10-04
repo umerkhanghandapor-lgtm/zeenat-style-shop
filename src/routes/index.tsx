@@ -13,6 +13,10 @@ import dupatta from "@/assets/dupatta.jpg";
 import makeup from "@/assets/makeup.jpg";
 import kidsFrock from "@/assets/kids-frock.jpg";
 import handbag from "@/assets/handbag.jpg";
+import caps from "@/assets/caps.jpg";
+import umbrella from "@/assets/umbrella.jpg";
+import bracelet from "@/assets/bracelet.jpg";
+import gentsShoes from "@/assets/gents-shoes.jpg";
 
 const WHATSAPP_NUMBER = "923001234567"; // TODO: apna WhatsApp number yahan likhein
 
@@ -55,6 +59,10 @@ const PRODUCTS: Product[] = [
   { id: 10, name: "Kids Embroidered Frock", category: "Kids", brand: "Zeenat Kids", price: 1950, image: kidsFrock, tag: "new" },
   { id: 11, name: "Ladies Leather Handbag", category: "Bags", brand: "Zeenat Bags", price: 3400, oldPrice: 4200, image: handbag, tag: "sale" },
   { id: 12, name: "Crochet Baby Cardigan", category: "Crochet", brand: "Zeenat Handmade", price: 980, image: crochetBag, tag: "new" },
+  { id: 13, name: "Stylish Caps (3 Colors)", category: "Caps & Umbrella", brand: "Zeenat Gents", price: 850, oldPrice: 1200, image: caps, tag: "sale" },
+  { id: 14, name: "Floral Folding Umbrella", category: "Caps & Umbrella", brand: "Zeenat Daily", price: 1100, image: umbrella, tag: "new" },
+  { id: 15, name: "Pearl Gold Bracelet", category: "Jewellery", brand: "Zeenat Jewels", price: 1250, oldPrice: 1800, image: bracelet, tag: "sale" },
+  { id: 16, name: "Gents Leather Oxford", category: "Shoes", brand: "Zeenat Steps", price: 4800, oldPrice: 6000, image: gentsShoes, tag: "sale" },
 ];
 
 const DELIVERY = [
