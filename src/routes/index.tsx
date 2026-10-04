@@ -303,6 +303,22 @@ function ZeenatApp() {
           </div>
         </div>
 
+        {filtered.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-border bg-card p-10 text-center">
+            <p className="font-display text-xl font-bold">Koi item nahi mila</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Doosra naam try karein ya WhatsApp par poochein — hum dhoond kar bata dein ge.
+            </p>
+            <a
+              href={waLink(`Assalam o Alaikum! Mujhe ye item chahiye: ${search || "..."}`)}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-bold text-whatsapp-foreground"
+            >
+              <WhatsAppIcon /> WhatsApp par poochein
+            </a>
+          </div>
+        ) : (
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {filtered.map((p, i) => (
             <article
