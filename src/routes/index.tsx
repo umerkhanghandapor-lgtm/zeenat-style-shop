@@ -17,6 +17,10 @@ import caps from "@/assets/caps.jpg";
 import umbrella from "@/assets/umbrella.jpg";
 import bracelet from "@/assets/bracelet.jpg";
 import gentsShoes from "@/assets/gents-shoes.jpg";
+import partyFrock from "@/assets/party-frock.jpg";
+import gentsJeans from "@/assets/gents-jeans.jpg";
+import abaya from "@/assets/abaya.jpg";
+import bridalMaxi from "@/assets/bridal-maxi.jpg";
 
 const WHATSAPP_NUMBER = "923001234567"; // TODO: apna WhatsApp number yahan likhein
 
@@ -27,6 +31,8 @@ type Product = {
   brand: string;
   price: number;
   oldPrice?: number;
+  rating: number;
+  reviews: number;
   image: string;
   tag?: "sale" | "new";
 };
@@ -47,22 +53,30 @@ const CATEGORIES = [
 ];
 
 const PRODUCTS: Product[] = [
-  { id: 1, name: "Embroidered Lawn 3-Piece", category: "Ladies", brand: "Zeenat Lawn", price: 4900, oldPrice: 7000, image: lawnSuit, tag: "sale" },
-  { id: 2, name: "Cotton Kurta Shalwar", category: "Gents", brand: "Zeenat Gents", price: 3600, image: kurta, tag: "new" },
-  { id: 3, name: "Handmade Crochet Tote", category: "Crochet", brand: "Zeenat Handmade", price: 1700, oldPrice: 2000, image: crochetBag, tag: "sale" },
-  { id: 4, name: "Kundan Bangle Set", category: "Jewellery", brand: "Zeenat Jewels", price: 2450, oldPrice: 2900, image: bangles, tag: "sale" },
-  { id: 5, name: "Gold Embroidered Khussa", category: "Shoes", brand: "Zeenat Steps", price: 2800, image: khussa, tag: "new" },
-  { id: 6, name: "Fashion Chasma UV400", category: "Chasma", brand: "Zeenat Optics", price: 1500, oldPrice: 2200, image: sunglasses, tag: "sale" },
-  { id: 7, name: "Floral School Bag", category: "Kids", brand: "Zeenat Kids", price: 1600, oldPrice: 2100, image: schoolBag, tag: "sale" },
-  { id: 8, name: "Chiffon Embroidered Dupatta", category: "Dupatta", brand: "Zeenat Lawn", price: 1450, oldPrice: 2400, image: dupatta, tag: "sale" },
-  { id: 9, name: "Luxury Makeup Set", category: "Makeup", brand: "Zeenat Beauty", price: 3200, image: makeup, tag: "new" },
-  { id: 10, name: "Kids Embroidered Frock", category: "Kids", brand: "Zeenat Kids", price: 1950, image: kidsFrock, tag: "new" },
-  { id: 11, name: "Ladies Leather Handbag", category: "Bags", brand: "Zeenat Bags", price: 3400, oldPrice: 4200, image: handbag, tag: "sale" },
-  { id: 12, name: "Crochet Baby Cardigan", category: "Crochet", brand: "Zeenat Handmade", price: 980, image: crochetBag, tag: "new" },
-  { id: 13, name: "Stylish Caps (3 Colors)", category: "Caps & Umbrella", brand: "Zeenat Gents", price: 850, oldPrice: 1200, image: caps, tag: "sale" },
-  { id: 14, name: "Floral Folding Umbrella", category: "Caps & Umbrella", brand: "Zeenat Daily", price: 1100, image: umbrella, tag: "new" },
-  { id: 15, name: "Pearl Gold Bracelet", category: "Jewellery", brand: "Zeenat Jewels", price: 1250, oldPrice: 1800, image: bracelet, tag: "sale" },
-  { id: 16, name: "Gents Leather Oxford", category: "Shoes", brand: "Zeenat Steps", price: 4800, oldPrice: 6000, image: gentsShoes, tag: "sale" },
+  { id: 1, name: "Embroidered Lawn 3-Piece", category: "Ladies", brand: "Zeenat Lawn", price: 4900, oldPrice: 7000, rating: 4.8, reviews: 342, image: lawnSuit, tag: "sale" },
+  { id: 2, name: "Cotton Kurta Shalwar", category: "Gents", brand: "Zeenat Gents", price: 3600, rating: 4.6, reviews: 187, image: kurta, tag: "new" },
+  { id: 3, name: "Handmade Crochet Tote", category: "Crochet", brand: "Zeenat Handmade", price: 1700, oldPrice: 2000, rating: 4.9, reviews: 156, image: crochetBag, tag: "sale" },
+  { id: 4, name: "Kundan Bangle Set", category: "Jewellery", brand: "Zeenat Jewels", price: 2450, oldPrice: 2900, rating: 4.7, reviews: 203, image: bangles, tag: "sale" },
+  { id: 5, name: "Gold Embroidered Khussa", category: "Shoes", brand: "Zeenat Steps", price: 2800, rating: 4.8, reviews: 174, image: khussa, tag: "new" },
+  { id: 6, name: "Fashion Chasma UV400", category: "Chasma", brand: "Zeenat Optics", price: 1500, oldPrice: 2200, rating: 4.5, reviews: 128, image: sunglasses, tag: "sale" },
+  { id: 7, name: "Floral School Bag", category: "Kids", brand: "Zeenat Kids", price: 1600, oldPrice: 2100, rating: 4.6, reviews: 96, image: schoolBag, tag: "sale" },
+  { id: 8, name: "Chiffon Embroidered Dupatta", category: "Dupatta", brand: "Zeenat Lawn", price: 1450, oldPrice: 2400, rating: 4.9, reviews: 231, image: dupatta, tag: "sale" },
+  { id: 9, name: "Luxury Makeup Set", category: "Makeup", brand: "Zeenat Beauty", price: 3200, rating: 4.7, reviews: 185, image: makeup, tag: "new" },
+  { id: 10, name: "Kids Embroidered Frock", category: "Kids", brand: "Zeenat Kids", price: 1950, rating: 4.8, reviews: 143, image: kidsFrock, tag: "new" },
+  { id: 11, name: "Ladies Leather Handbag", category: "Bags", brand: "Zeenat Bags", price: 3400, oldPrice: 4200, rating: 4.6, reviews: 167, image: handbag, tag: "sale" },
+  { id: 12, name: "Crochet Baby Cardigan", category: "Crochet", brand: "Zeenat Handmade", price: 980, rating: 4.9, reviews: 118, image: crochetBag, tag: "new" },
+  { id: 13, name: "Stylish Caps (3 Colors)", category: "Caps & Umbrella", brand: "Zeenat Gents", price: 850, oldPrice: 1200, rating: 4.5, reviews: 210, image: caps, tag: "sale" },
+  { id: 14, name: "Floral Folding Umbrella", category: "Caps & Umbrella", brand: "Zeenat Daily", price: 1100, rating: 4.4, reviews: 89, image: umbrella, tag: "new" },
+  { id: 15, name: "Pearl Gold Bracelet", category: "Jewellery", brand: "Zeenat Jewels", price: 1250, oldPrice: 1800, rating: 4.8, reviews: 176, image: bracelet, tag: "sale" },
+  { id: 16, name: "Gents Leather Oxford", category: "Shoes", brand: "Zeenat Steps", price: 4800, oldPrice: 6000, rating: 4.7, reviews: 152, image: gentsShoes, tag: "sale" },
+  { id: 17, name: "Velvet Embroidered Party Frock", category: "Ladies", brand: "Zeenat Bridal", price: 7900, oldPrice: 9500, rating: 4.9, reviews: 214, image: partyFrock, tag: "sale" },
+  { id: 18, name: "Denim Jeans & Shirt Set", category: "Gents", brand: "Zeenat Gents", price: 4400, oldPrice: 5500, rating: 4.7, reviews: 189, image: gentsJeans, tag: "sale" },
+  { id: 19, name: "Embroidered Black Abaya", category: "Ladies", brand: "Zeenat Bridal", price: 6500, rating: 4.8, reviews: 132, image: abaya, tag: "new" },
+  { id: 20, name: "Bridal Zardozi Maxi", category: "Ladies", brand: "Zeenat Bridal", price: 18500, oldPrice: 24000, rating: 5.0, reviews: 96, image: bridalMaxi, tag: "sale" },
+  { id: 21, name: "Silk Wedding Clutch", category: "Bags", brand: "Zeenat Bags", price: 1900, rating: 4.6, reviews: 78, image: handbag, tag: "new" },
+  { id: 22, name: "Handmade Crochet Shawl", category: "Crochet", brand: "Zeenat Handmade", price: 2200, oldPrice: 2800, rating: 4.9, reviews: 141, image: crochetBag, tag: "sale" },
+  { id: 23, name: "Glam Makeup Brush Set", category: "Makeup", brand: "Zeenat Beauty", price: 1350, oldPrice: 1800, rating: 4.5, reviews: 203, image: makeup, tag: "sale" },
+  { id: 24, name: "Gents Casual Sneakers", category: "Shoes", brand: "Zeenat Steps", price: 3900, rating: 4.7, reviews: 167, image: gentsShoes, tag: "new" },
 ];
 
 const DELIVERY = [
@@ -285,6 +299,7 @@ function ZeenatApp() {
                 <p className="mt-0.5 text-[11px] text-muted-foreground">
                   {p.category} · {p.brand}
                 </p>
+                <Stars rating={p.rating} reviews={p.reviews} />
                 <div className="mt-2 flex items-baseline gap-2">
                   <span className="text-lg font-extrabold">{formatRs(p.price)}</span>
                   {p.oldPrice && (
@@ -384,6 +399,30 @@ function ZeenatApp() {
       </a>
 
       {scanOpen && <ScanDialog onClose={() => setScanOpen(false)} />}
+    </div>
+  );
+}
+
+function Stars({ rating, reviews }: { rating: number; reviews: number }) {
+  const full = Math.round(rating);
+  return (
+    <div
+      className="mt-1.5 flex items-center gap-1"
+      aria-label={`Rating: ${rating} out of 5 stars, ${reviews} reviews`}
+    >
+      <span className="flex text-gold" aria-hidden="true">
+        {[1, 2, 3, 4, 5].map((i) => (
+          <svg
+            key={i}
+            viewBox="0 0 20 20"
+            className={`size-3.5 fill-current ${i <= full ? "" : "opacity-30"}`}
+          >
+            <path d="M10 1.6l2.5 5.2 5.7.8-4.1 4 .9 5.7L10 14.6l-5 2.7.9-5.7-4.1-4 5.7-.8L10 1.6z" />
+          </svg>
+        ))}
+      </span>
+      <span className="text-[11px] font-bold">{rating.toFixed(1)}</span>
+      <span className="text-[11px] text-muted-foreground">({reviews} reviews)</span>
     </div>
   );
 }
