@@ -410,7 +410,7 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
       const tick = async () => {
         if (video.readyState >= 2) {
           const codes = await detector.detect(video);
-          if (codes.length > 0) {
+          if (codes.length > 0 && codes[0]) {
             setResult(codes[0].rawValue);
             stream.getTracks().forEach((t) => t.stop());
             return;
