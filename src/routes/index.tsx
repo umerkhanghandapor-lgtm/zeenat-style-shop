@@ -226,6 +226,28 @@ function ZeenatApp() {
         </div>
       </section>
 
+      {/* Trust strip */}
+      <section className="mx-auto max-w-6xl px-4 pt-4">
+        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+          {[
+            { icon: "🚚", label: "Har shehar delivery" },
+            { icon: "💵", label: "Cash on Delivery" },
+            { icon: "🔄", label: "7 din return" },
+            { icon: "⭐", label: "100% asli items" },
+          ].map((t) => (
+            <div
+              key={t.label}
+              className="flex items-center gap-2 rounded-2xl border border-border bg-card px-3.5 py-3 text-xs font-bold"
+            >
+              <span className="text-base" aria-hidden="true">
+                {t.icon}
+              </span>
+              {t.label}
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Category chips */}
       <nav
         id="shop"
