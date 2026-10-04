@@ -193,11 +193,12 @@ function ZeenatApp() {
                 Nayi Collection 2026
               </span>
               <h1 className="mt-2 text-4xl leading-[1.05] font-bold text-balance sm:text-6xl">
-                Fashion ka poora bazaar, ek jagah
+                Pehniya Zeenat har mauqay per
               </h1>
               <p className="mt-3 text-sm text-primary-foreground/85 text-pretty">
-                Ladies, gents aur kids ke kapre, shoes, makeup, jewellery, bags
-                aur handmade crochet — ghar baithe order karein.
+                Fashion ka poora bazaar, ek jagah — ladies, gents aur kids ke
+                kapre, shoes, makeup, jewellery, bags aur handmade crochet,
+                ghar baithe order karein.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <a
