@@ -120,15 +120,20 @@ function ZeenatApp() {
   const [category, setCategory] = useState("Sab");
   const [saleOnly, setSaleOnly] = useState(false);
   const [scanOpen, setScanOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   const filtered = useMemo(
     () =>
       PRODUCTS.filter(
         (p) =>
           (category === "Sab" || p.category === category) &&
-          (!saleOnly || p.tag === "sale"),
+          (!saleOnly || p.tag === "sale") &&
+          (!search.trim() ||
+            `${p.name} ${p.category} ${p.brand}`
+              .toLowerCase()
+              .includes(search.trim().toLowerCase())),
       ),
-    [category, saleOnly],
+    [category, saleOnly, search],
   );
 
   return (
@@ -193,11 +198,12 @@ function ZeenatApp() {
                 Nayi Collection 2026
               </span>
               <h1 className="mt-2 text-4xl leading-[1.05] font-bold text-balance sm:text-6xl">
-                Fashion ka poora bazaar, ek jagah
+                Pehniya Zeenat har mauqay per
               </h1>
               <p className="mt-3 text-sm text-primary-foreground/85 text-pretty">
-                Ladies, gents aur kids ke kapre, shoes, makeup, jewellery, bags
-                aur handmade crochet — ghar baithe order karein.
+                Fashion ka poora bazaar, ek jagah — ladies, gents aur kids ke
+                kapre, shoes, makeup, jewellery, bags aur handmade crochet,
+                ghar baithe order karein.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <a
@@ -217,6 +223,28 @@ function ZeenatApp() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Trust strip */}
+      <section className="mx-auto max-w-6xl px-4 pt-4">
+        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+          {[
+            { icon: "🚚", label: "Har shehar delivery" },
+            { icon: "💵", label: "Cash on Delivery" },
+            { icon: "🔄", label: "7 din return" },
+            { icon: "⭐", label: "100% asli items" },
+          ].map((t) => (
+            <div
+              key={t.label}
+              className="flex items-center gap-2 rounded-2xl border border-border bg-card px-3.5 py-3 text-xs font-bold"
+            >
+              <span className="text-base" aria-hidden="true">
+                {t.icon}
+              </span>
+              {t.label}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -254,7 +282,7 @@ function ZeenatApp() {
 
       {/* Products */}
       <main className="mx-auto max-w-6xl px-4 py-10">
-        <div className="mb-6 flex items-end justify-between">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 className="font-display text-3xl font-bold sm:text-4xl">
               {saleOnly ? "Sale Items" : category === "Sab" ? "Hamari Collection" : category}
@@ -263,8 +291,34 @@ function ZeenatApp() {
               {filtered.length} items · 12 brands · Cash on Delivery
             </p>
           </div>
+          <div className="relative w-full max-w-xs">
+            <SearchIcon className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Kya dhoond rahe hain?"
+              aria-label="Products search karein"
+              className="w-full rounded-full border border-border bg-card py-2.5 pr-4 pl-9 text-sm outline-none transition placeholder:text-muted-foreground focus:border-gold"
+            />
+          </div>
         </div>
 
+        {filtered.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-border bg-card p-10 text-center">
+            <p className="font-display text-xl font-bold">Koi item nahi mila</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Doosra naam try karein ya WhatsApp par poochein — hum dhoond kar bata dein ge.
+            </p>
+            <a
+              href={waLink(`Assalam o Alaikum! Mujhe ye item chahiye: ${search || "..."}`)}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-bold text-whatsapp-foreground"
+            >
+              <WhatsAppIcon /> WhatsApp par poochein
+            </a>
+          </div>
+        ) : (
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {filtered.map((p, i) => (
             <article
@@ -320,6 +374,7 @@ function ZeenatApp() {
             </article>
           ))}
         </div>
+        )}
 
         {/* Delivery + info cards */}
         <section className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -531,6 +586,15 @@ function ScanIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4 shrink-0" aria-hidden="true">
       <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M4 12h16" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function SearchIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className} aria-hidden="true">
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" strokeLinecap="round" />
     </svg>
   );
 }
