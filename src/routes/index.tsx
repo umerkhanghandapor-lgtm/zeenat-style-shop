@@ -121,6 +121,8 @@ function ZeenatApp() {
   const [saleOnly, setSaleOnly] = useState(false);
   const [scanOpen, setScanOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const [cart, setCart] = useState<Record<number, number>>({});
+  const [cartOpen, setCartOpen] = useState(false);
 
   const filtered = useMemo(
     () =>
@@ -135,6 +137,27 @@ function ZeenatApp() {
       ),
     [category, saleOnly, search],
   );
+
+  const cartItems = useMemo(
+    () =>
+      Object.entries(cart).flatMap(([id, qty]) => {
+        const product = PRODUCTS.find((p) => p.id === Number(id));
+        return product ? [{ product, qty }] : [];
+      }),
+    [cart],
+  );
+  const cartCount = cartItems.reduce((n, x) => n + x.qty, 0);
+  const subtotal = cartItems.reduce((n, x) => n + x.product.price * x.qty, 0);
+  const deliveryFee = subtotal >= 5000 || subtotal === 0 ? 0 : 200;
+
+  const addToCart = (id: number) => setCart((c) => ({ ...c, [id]: (c[id] ?? 0) + 1 }));
+  const setQty = (id: number, qty: number) =>
+    setCart((c) => {
+      const next = { ...c };
+      if (qty <= 0) delete next[id];
+      else next[id] = qty;
+      return next;
+    });
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -164,6 +187,17 @@ function ZeenatApp() {
             </span>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => setCartOpen(true)}
+              className="relative inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-2 text-xs font-semibold transition hover:border-gold"
+            >
+              <CartIcon /> Baskit
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full bg-sale text-[10px] font-bold text-sale-foreground">
+                  {cartCount}
+                </span>
+              )}
+            </button>
             <button
               onClick={() => setScanOpen(true)}
               className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-2 text-xs font-semibold transition hover:border-gold"
@@ -362,14 +396,23 @@ function ZeenatApp() {
                     </span>
                   )}
                 </div>
-                <a
-                  href={waLink(`Assalam o Alaikum! Mujhe ye item chahiye: ${p.name} (${formatRs(p.price)}) — Zeenat Collection`)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 flex items-center justify-center gap-1.5 rounded-full bg-whatsapp py-2 text-xs font-bold text-whatsapp-foreground transition hover:opacity-90"
-                >
-                  <WhatsAppIcon /> Order on WhatsApp
-                </a>
+                <div className="mt-3 flex gap-2">
+                  <button
+                    onClick={() => addToCart(p.id)}
+                    className="flex-1 rounded-full bg-primary py-2 text-xs font-bold text-primary-foreground transition hover:opacity-90"
+                  >
+                    {cart[p.id] ? `Baskit mein hai (${cart[p.id]})` : "Baskit mein daalein"}
+                  </button>
+                  <a
+                    href={waLink(`Assalam o Alaikum! Mujhe ye item chahiye: ${p.name} (${formatRs(p.price)}) — Zeenat Collection`)}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`WhatsApp par order: ${p.name}`}
+                    className="flex items-center justify-center rounded-full bg-whatsapp px-3 text-whatsapp-foreground transition hover:opacity-90"
+                  >
+                    <WhatsAppIcon />
+                  </a>
+                </div>
               </div>
             </article>
           ))}
@@ -454,6 +497,16 @@ function ZeenatApp() {
       </a>
 
       {scanOpen && <ScanDialog onClose={() => setScanOpen(false)} />}
+      {cartOpen && (
+        <CartDrawer
+          items={cartItems}
+          subtotal={subtotal}
+          deliveryFee={deliveryFee}
+          onClose={() => setCartOpen(false)}
+          onQty={setQty}
+          onRemove={(id) => setQty(id, 0)}
+        />
+      )}
     </div>
   );
 }
@@ -595,6 +648,165 @@ function SearchIcon({ className }: { className?: string }) {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className} aria-hidden="true">
       <circle cx="11" cy="11" r="7" />
       <path d="m20 20-3.5-3.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function CartDrawer({
+  items,
+  subtotal,
+  deliveryFee,
+  onClose,
+  onQty,
+  onRemove,
+}: {
+  items: { product: Product; qty: number }[];
+  subtotal: number;
+  deliveryFee: number;
+  onClose: () => void;
+  onQty: (id: number, qty: number) => void;
+  onRemove: (id: number) => void;
+}) {
+  const total = subtotal + deliveryFee;
+  const orderLines = items
+    .map((x, i) => `${i + 1}. ${x.product.name} x${x.qty} — ${formatRs(x.product.price * x.qty)}`)
+    .join("\n");
+  const msg = `Assalam o Alaikum! Mujhe ye order karna hai (Zeenat Collection):\n\n${orderLines}\n\nSubtotal: ${formatRs(subtotal)}\nDelivery: ${deliveryFee === 0 ? "FREE" : formatRs(deliveryFee)}\nTotal: ${formatRs(total)}\n\nNaam: \nShehar: \nPoora address: `;
+
+  return (
+    <div className="fixed inset-0 z-50 flex justify-end bg-foreground/60" onClick={onClose}>
+      <aside
+        className="flex h-full w-full max-w-sm flex-col border-l border-border bg-card"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between border-b border-border px-5 py-4">
+          <h3 className="font-display text-xl font-bold">Aap ka Baskit</h3>
+          <button
+            onClick={onClose}
+            className="rounded-full border border-border px-3 py-1 text-sm font-semibold hover:border-gold"
+          >
+            Band karein
+          </button>
+        </div>
+
+        {items.length === 0 ? (
+          <div className="flex flex-1 flex-col items-center justify-center gap-2 p-8 text-center">
+            <span className="text-3xl" aria-hidden="true">🛍️</span>
+            <p className="font-display text-lg font-bold">Baskit khali hai</p>
+            <p className="text-sm text-muted-foreground">
+              Items pasand karein aur "Baskit mein daalein" dabayein.
+            </p>
+            <button
+              onClick={onClose}
+              className="mt-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
+            >
+              Khareedari shuru karein
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="flex-1 space-y-3 overflow-y-auto p-4">
+              {items.map((x) => (
+                <div
+                  key={x.product.id}
+                  className="flex gap-3 rounded-2xl border border-border bg-background p-3"
+                >
+                  <img
+                    src={x.product.image}
+                    alt={x.product.name}
+                    className="size-16 shrink-0 rounded-xl object-cover"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <h4 className="truncate text-sm font-bold">{x.product.name}</h4>
+                    <p className="text-xs text-muted-foreground">
+                      {formatRs(x.product.price)} har aik
+                    </p>
+                    <div className="mt-1.5 flex items-center gap-2">
+                      <button
+                        onClick={() => onQty(x.product.id, x.qty - 1)}
+                        aria-label={`${x.product.name} kam karein`}
+                        className="size-6 rounded-full border border-border text-sm font-bold"
+                      >
+                        −
+                      </button>
+                      <span className="w-5 text-center text-sm font-bold">{x.qty}</span>
+                      <button
+                        onClick={() => onQty(x.product.id, x.qty + 1)}
+                        aria-label={`${x.product.name} zyada karein`}
+                        className="size-6 rounded-full border border-border text-sm font-bold"
+                      >
+                        +
+                      </button>
+                      <button
+                        onClick={() => onRemove(x.product.id)}
+                        className="ml-auto text-[11px] font-semibold text-sale underline"
+                      >
+                        Hataein
+                      </button>
+                    </div>
+                  </div>
+                  <span className="text-sm font-extrabold">
+                    {formatRs(x.product.price * x.qty)}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="border-t border-border p-4">
+              {deliveryFee === 0 ? (
+                <p className="mb-2 rounded-full bg-whatsapp/10 px-3 py-1.5 text-center text-xs font-bold text-whatsapp">
+                  🎉 Mubarak! Delivery FREE hai
+                </p>
+              ) : (
+                <p className="mb-2 rounded-full bg-accent px-3 py-1.5 text-center text-xs font-bold text-accent-foreground">
+                  {formatRs(5000 - subtotal)} aur — delivery FREE ho jaye gi!
+                </p>
+              )}
+              <dl className="space-y-1.5 text-sm">
+                <div className="flex justify-between">
+                  <dt className="text-muted-foreground">Subtotal</dt>
+                  <dd className="font-bold">{formatRs(subtotal)}</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt className="text-muted-foreground">Delivery (Karachi)</dt>
+                  <dd className="font-bold">{deliveryFee === 0 ? "FREE" : formatRs(deliveryFee)}</dd>
+                </div>
+                <div className="flex justify-between border-t border-border pt-1.5 text-base">
+                  <dt className="font-bold">Total</dt>
+                  <dd className="font-extrabold text-primary">{formatRs(total)}</dd>
+                </div>
+              </dl>
+              <p className="mt-1 text-[11px] text-muted-foreground">
+                Doosre shehar ki delivery Rs 350 hai — WhatsApp par confirm ho gi.
+              </p>
+              <a
+                href={waLink(msg)}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 flex items-center justify-center gap-2 rounded-full bg-whatsapp py-3 text-sm font-bold text-whatsapp-foreground transition hover:opacity-90"
+              >
+                <WhatsAppIcon /> Order on WhatsApp
+              </a>
+            </div>
+          </>
+        )}
+      </aside>
+    </div>
+  );
+}
+
+function CartIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      className="size-4 shrink-0"
+      aria-hidden="true"
+    >
+      <path d="M6 6h15l-1.5 9h-12L5 3H2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="9" cy="20" r="1.5" />
+      <circle cx="18" cy="20" r="1.5" />
     </svg>
   );
 }
