@@ -90,6 +90,14 @@ function waLink(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
+const FAQS = [
+  { q: "Order kaise karein?", a: "Product ko cart mein add karein aur 'WhatsApp par order' button dabayein. Hum WhatsApp par aap se rabta kar ke order confirm karenge." },
+  { q: "Delivery charges kitne hain?", a: "Rs 5,000 ya us se zyada ke order par delivery free hai. Karachi mein Rs 200 aur baqi Pakistan mein Rs 350 delivery charges hain." },
+  { q: "Kya cash on delivery available hai?", a: "Ji haan, pooray Pakistan mein cash on delivery available hai — parcel milne par payment karein." },
+  { q: "Delivery mein kitne din lagte hain?", a: "Karachi mein 1-2 din aur baqi shehron mein 3-5 working days mein order pohanch jata hai." },
+  { q: "Kya product wapas ya exchange ho sakta hai?", a: "Ji haan, 7 din ke andar unused product exchange ya return ho sakta hai. WhatsApp par rabta karein." },
+];
+
 function formatRs(n: number) {
   return `Rs ${n.toLocaleString("en-PK")}`;
 }
@@ -155,6 +163,18 @@ export const Route = createFileRoute("/")({
               itemOffered: { "@type": "CategoryCode", name },
             })),
           },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQS.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
         }),
       },
     ],
@@ -508,6 +528,20 @@ function ZeenatApp() {
             >
               <ScanIcon /> Scanner kholein
             </button>
+          </div>
+        </section>
+
+        <section className="mt-14" aria-labelledby="faq-heading">
+          <h2 id="faq-heading" className="font-display text-3xl font-bold">
+            Aksar Pooche Jane Wale Sawal (FAQ)
+          </h2>
+          <div className="mt-6 space-y-3">
+            {FAQS.map((f) => (
+              <details key={f.q} className="group rounded-2xl border border-border bg-card p-5">
+                <summary className="cursor-pointer list-none font-semibold">{f.q}</summary>
+                <p className="mt-3 text-sm text-muted-foreground">{f.a}</p>
+              </details>
+            ))}
           </div>
         </section>
       </main>
