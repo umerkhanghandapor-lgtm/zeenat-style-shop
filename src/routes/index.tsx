@@ -97,11 +97,16 @@ function formatRs(n: number) {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Zeenat Collection — Ladies, Gents & Kids Fashion" },
+      { title: "Zeenat Collection — Ladies, Gents & Kids Fashion Pakistan" },
       {
         name: "description",
         content:
-          "Zeenat Collection — ladies, gents aur kids ke kapre, shoes, makeup, jewellery, bags, dupattay aur handmade crochet. WhatsApp par order karein, cash on delivery.",
+          "Zeenat Collection — ladies, gents aur kids ke kapre, shoes, makeup, jewellery, bags, dupattay aur handmade crochet. WhatsApp par order karein, cash on delivery, pooray Pakistan mein delivery.",
+      },
+      {
+        name: "keywords",
+        content:
+          "zeenat collection, online shopping pakistan, ladies suit price pakistan, gents kurta shalwar, kids frock, khussa shoes, makeup online pakistan, jewellery online pakistan, crochet handmade bags, dupatta price, school bags, chasma, cash on delivery pakistan",
       },
       { property: "og:title", content: "Zeenat Collection — Ladies, Gents & Kids Fashion" },
       {
@@ -110,7 +115,48 @@ export const Route = createFileRoute("/")({
           "Kapre, shoes, makeup, jewellery, bags aur crochet — sab ek jagah. WhatsApp par order karein.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://zeenat-style-shop.lovable.app/" },
+      { property: "og:site_name", content: "Zeenat Collection" },
+      { property: "og:locale", content: "en_PK" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+    ],
+    links: [{ rel: "canonical", href: "https://zeenat-style-shop.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Store",
+          name: "Zeenat Collection",
+          description:
+            "Ladies, gents aur kids ke kapre, shoes, makeup, jewellery, bags, dupattay aur handmade crochet — sab ek jagah.",
+          url: "https://zeenat-style-shop.lovable.app/",
+          areaServed: "PK",
+          currenciesAccepted: "PKR",
+          paymentAccepted: "Cash on Delivery",
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Zeenat Collection Categories",
+            itemListElement: [
+              "Ladies",
+              "Gents",
+              "Kids",
+              "Shoes",
+              "Makeup",
+              "Jewellery",
+              "Bags",
+              "Dupatta",
+              "Chasma",
+              "Crochet",
+              "Caps & Umbrella",
+            ].map((name) => ({
+              "@type": "Offer",
+              itemOffered: { "@type": "CategoryCode", name },
+            })),
+          },
+        }),
+      },
     ],
   }),
   component: ZeenatApp,
