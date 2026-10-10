@@ -81,6 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Zeenat Collection" },
       { name: "description", content: "Zeenat Collection — ladies, gents aur kids fashion, ek jagah." },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Zeenat Collection" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
