@@ -1,5 +1,5 @@
 export { default as heroImg } from "@/assets/hero.jpg";
-// from "@/assets/hero.jpg";
+
 import lawnSuit from "@/assets/lawn-suit.jpg";
 import kurta from "@/assets/kurta.jpg";
 import crochetBag from "@/assets/crochet-bag.jpg";

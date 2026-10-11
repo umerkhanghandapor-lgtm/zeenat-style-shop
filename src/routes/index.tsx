@@ -350,7 +350,7 @@ function ZeenatApp() {
               </div>
               <div className="p-3.5">
                 <h3 className="font-display text-base leading-tight font-bold">
-                  {p.name}
+                  <Link to="/product/$id" params={{ id: String(p.id) }} className="hover:underline">{p.name}</Link>
                 </h3>
                 <p className="mt-0.5 text-[11px] text-muted-foreground">
                   {p.category} · {p.brand}
@@ -460,6 +460,7 @@ function ZeenatApp() {
             </p>
           </div>
           <div className="flex gap-6 text-xs font-semibold tracking-wider text-primary-foreground/80 uppercase sm:ml-auto">
+            <Link to="/about" className="underline">About Us</Link>
             <span>7 din return</span>
             <span>Cash on Delivery</span>
             <span>12 Brands</span>
