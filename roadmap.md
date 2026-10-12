@@ -1,5 +1,7 @@
 # Zeenat Collection — Tasks
 
+- [ ] Convert all storefront pages, FAQs, metadata, and order messages to English
+
 - [x] Design system (warm boutique palette, fonts)
 - [x] Home page: hero, categories, products, sale, delivery, WhatsApp, scanner
 - [x] More product photos (caps, umbrella, bracelet, more items) + prices
