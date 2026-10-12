@@ -589,7 +589,7 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
               rel="noreferrer"
               className="mt-3 inline-flex items-center gap-2 rounded-full bg-whatsapp px-4 py-2 text-xs font-bold text-whatsapp-foreground"
             >
-              <WhatsAppIcon /> Ye item Ask on WhatsApp
+              <WhatsAppIcon /> Ask About This Item
             </a>
           </div>
         )}
