@@ -4,11 +4,11 @@ export const SITE = "https://zeenat-style-shop.lovable.app";
 
 export function productFaqs(p: Product) {
   return [
-    { q: `Zeenat Collection ke ${p.name} ki price kya hai?`, a: `${p.name} ki price ${formatRs(p.price)} hai${p.oldPrice ? ` (pehle ${formatRs(p.oldPrice)} thi — sale chal rahi hai)` : ""}.` },
-    { q: "Delivery kitne din mein hoti hai?", a: "Karachi mein 1-2 din aur baqi Pakistan mein 3-5 working days mein delivery hoti hai." },
-    { q: "Delivery charges kitne hain?", a: `Karachi Rs 200, doosre shehar Rs 350. Rs 5,000 se zyada ke order par delivery free hai.` },
-    { q: `${p.name} kaise order karein?`, a: "Cart mein add karein ya 'WhatsApp par order' button dabayein. Cash on delivery available hai." },
-    { q: "Kya return ya exchange ho sakta hai?", a: "Ji haan, 7 din ke andar unused product exchange ya return ho sakta hai." },
+    { q: `How much does ${p.name} cost at Zeenat Collection?`, a: `${p.name} costs ${formatRs(p.price)}${p.oldPrice ? ` (previously ${formatRs(p.oldPrice)} — now on sale)` : ""}.` },
+    { q: "How long does delivery take?", a: "Delivery takes 1–2 days within Karachi and 3–5 working days elsewhere in Pakistan." },
+    { q: "What are the delivery charges?", a: `Delivery costs Rs 200 within Karachi and Rs 350 to other cities. Orders of Rs 5,000 or more qualify for free delivery.` },
+    { q: `How can I order ${p.name}?`, a: "Add it to your cart or select 'Order on WhatsApp'. Cash on delivery is available." },
+    { q: "Can I return or exchange this product?", a: "Yes, unused products can be returned or exchanged within 7 days." },
   ];
 }
 

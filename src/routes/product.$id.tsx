@@ -10,9 +10,9 @@ export const Route = createFileRoute("/product/$id")({
   },
   head: ({ params, loaderData }) => {
     const p = loaderData?.product;
-    if (!p) return { meta: [{ title: "Product nahi mila — Zeenat Collection" }] };
+    if (!p) return { meta: [{ title: "Product Not Found — Zeenat Collection" }] };
     const title = `${p.name} — ${formatRs(p.price)} | Zeenat Collection`;
-    const desc = `${p.name} (${p.category}, ${p.brand}) sirf ${formatRs(p.price)} mein. WhatsApp par order, cash on delivery, pooray Pakistan mein delivery.`;
+    const desc = `Shop ${p.name} (${p.category}, ${p.brand}) for ${formatRs(p.price)}. Order on WhatsApp with cash on delivery across Pakistan.`;
     const url = `${SITE}/product/${params.id}`;
     return {
       meta: [
@@ -45,7 +45,7 @@ export const Route = createFileRoute("/product/$id")({
   },
   notFoundComponent: () => (
     <div className="p-10 text-center">
-      Product nahi mila. <Link to="/" className="underline">Wapas jayein</Link>
+      Product not found. <Link to="/" className="underline">Back to Shop</Link>
     </div>
   ),
   component: ProductPage,
@@ -68,17 +68,17 @@ function ProductPage() {
           </p>
           <p className="mt-1 text-sm text-muted-foreground">★ {p.rating} ({p.reviews} reviews)</p>
           <a
-            href={waLink(`Assalam o Alaikum! Mujhe ye item chahiye: ${p.name} (${formatRs(p.price)}) — Zeenat Collection`)}
+            href={waLink(`Hello! I would like this item: ${p.name} (${formatRs(p.price)}) — Zeenat Collection`)}
             target="_blank"
             rel="noreferrer"
             className="mt-5 inline-block rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground"
           >
-            WhatsApp par order karein
+            Order on WhatsApp
           </a>
         </div>
       </div>
       <section className="mt-10">
-        <h2 className="font-display text-2xl font-bold">Aksar Pooche Jane Wale Sawal</h2>
+        <h2 className="font-display text-2xl font-bold">Frequently Asked Questions</h2>
         <div className="mt-4 space-y-2">
           {faqs.map((f) => (
             <details key={f.q} className="rounded-xl border border-border bg-card p-4">

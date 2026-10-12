@@ -11,18 +11,18 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Zeenat Collection — ladies, gents aur kids ke kapre, shoes, makeup, jewellery, bags, dupattay aur handmade crochet. WhatsApp par order karein, cash on delivery, pooray Pakistan mein delivery.",
+          "Zeenat Collection — clothing for women, men and kids, shoes, makeup, jewellery, bags, dupattas and handmade crochet. Order on WhatsApp with cash on delivery across Pakistan.",
       },
       {
         name: "keywords",
         content:
-          "zeenat collection, online shopping pakistan, ladies suit price pakistan, gents kurta shalwar, kids frock, khussa shoes, makeup online pakistan, jewellery online pakistan, crochet handmade bags, dupatta price, school bags, chasma, cash on delivery pakistan",
+          "zeenat collection, online shopping pakistan, ladies suit price pakistan, gents kurta shalwar, kids frock, khussa shoes, makeup online pakistan, jewellery online pakistan, crochet handmade bags, dupatta price, school bags, sunglasses, cash on delivery pakistan",
       },
       { property: "og:title", content: "Zeenat Collection — Ladies, Gents & Kids Fashion" },
       {
         property: "og:description",
         content:
-          "Kapre, shoes, makeup, jewellery, bags aur crochet — sab ek jagah. WhatsApp par order karein.",
+          "Clothing, shoes, makeup, jewellery, bags and crochet — all in one place. Order on WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://zeenat-style-shop.lovable.app/" },
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/")({
           "@type": "Store",
           name: "Zeenat Collection",
           description:
-            "Ladies, gents aur kids ke kapre, shoes, makeup, jewellery, bags, dupattay aur handmade crochet — sab ek jagah.",
+            "Clothing for women, men and kids, shoes, makeup, jewellery, bags, dupattas and handmade crochet — all in one place.",
           url: "https://zeenat-style-shop.lovable.app/",
           areaServed: "PK",
           currenciesAccepted: "PKR",
@@ -57,7 +57,7 @@ export const Route = createFileRoute("/")({
               "Jewellery",
               "Bags",
               "Dupatta",
-              "Chasma",
+              "Sunglasses",
               "Crochet",
               "Caps & Umbrella",
             ].map((name) => ({
@@ -85,7 +85,7 @@ export const Route = createFileRoute("/")({
 });
 
 function ZeenatApp() {
-  const [category, setCategory] = useState("Sab");
+  const [category, setCategory] = useState("All");
   const [saleOnly, setSaleOnly] = useState(false);
   const [scanOpen, setScanOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -96,7 +96,7 @@ function ZeenatApp() {
     () =>
       PRODUCTS.filter(
         (p) =>
-          (category === "Sab" || p.category === category) &&
+          (category === "All" || p.category === category) &&
           (!saleOnly || p.tag === "sale") &&
           (!search.trim() ||
             `${p.name} ${p.category} ${p.brand}`
@@ -134,10 +134,9 @@ function ZeenatApp() {
         <div className="marquee-track flex w-max whitespace-nowrap text-xs font-semibold tracking-[0.2em] uppercase">
           {[0, 1].map((i) => (
             <span key={i} className="px-4">
-              ✦ Sale — 40% tak discount ✦ Cash on Delivery ✦ Poore Pakistan mein
-              delivery ✦ WhatsApp par order karein ✦ Sale — 40% tak discount ✦
-              Cash on Delivery ✦ Poore Pakistan mein delivery ✦ WhatsApp par
-              order karein ✦
+              ✦ Sale — Up to 40% off ✦ Cash on Delivery ✦ Delivery across Pakistan
+              ✦ Order on WhatsApp ✦ Sale — Up to 40% off ✦
+              Cash on Delivery ✦ Delivery across Pakistan ✦ Order on WhatsApp ✦
             </span>
           ))}
         </div>
@@ -151,7 +150,7 @@ function ZeenatApp() {
               Zeenat Collection
             </span>
             <span className="block text-[10px] font-semibold tracking-[0.3em] text-muted-foreground uppercase">
-              Cloths · Fashion · Crochet
+              Clothing · Fashion · Crochet
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -159,7 +158,7 @@ function ZeenatApp() {
               onClick={() => setCartOpen(true)}
               className="relative inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-2 text-xs font-semibold transition hover:border-gold"
             >
-              <CartIcon /> Baskit
+              <CartIcon /> Cart
               {cartCount > 0 && (
                 <span className="absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full bg-sale text-[10px] font-bold text-sale-foreground">
                   {cartCount}
@@ -173,7 +172,7 @@ function ZeenatApp() {
               <ScanIcon /> Scan
             </button>
             <a
-              href={waLink("Assalam o Alaikum! Mujhe Zeenat Collection se order karna hai.")}
+              href={waLink("Hello! I would like to place an order with Zeenat Collection.")}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full bg-whatsapp px-4 py-2 text-xs font-bold text-whatsapp-foreground shadow-sm transition hover:opacity-90"
@@ -197,30 +196,30 @@ function ZeenatApp() {
           <div className="absolute inset-0 flex items-center bg-gradient-to-r from-foreground/70 via-foreground/30 to-transparent">
             <div className="fade-up max-w-md px-6 py-8 text-primary-foreground sm:px-10">
               <span className="text-xs font-bold tracking-[0.25em] text-gold uppercase">
-                Nayi Collection 2026
+                New Collection 2026
               </span>
               <h1 className="mt-2 text-4xl leading-[1.05] font-bold text-balance sm:text-6xl">
-                Pehniya Zeenat har mauqay per
+                Wear Zeenat for every occasion
               </h1>
               <p className="mt-3 text-sm text-primary-foreground/85 text-pretty">
-                Fashion ka poora bazaar, ek jagah — ladies, gents aur kids ke
-                kapre, shoes, makeup, jewellery, bags aur handmade crochet,
-                ghar baithe order karein.
+                Your complete fashion shop — clothing for women, men and kids,
+                shoes, makeup, jewellery, bags and handmade crochet.
+                Order from the comfort of your home.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <a
                   href="#shop"
                   className="rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition hover:brightness-105"
                 >
-                  Abhi Khareedain
+                  Shop Now
                 </a>
                 <a
-                  href={waLink("Assalam o Alaikum! Mujhe Zeenat Collection ki new collection dekhni hai.")}
+                  href={waLink("Hello! I would like to see the new collection at Zeenat Collection.")}
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-full border border-primary-foreground/40 px-6 py-3 text-sm font-semibold transition hover:bg-primary-foreground/10"
                 >
-                  WhatsApp par rabta
+                  Contact on WhatsApp
                 </a>
               </div>
             </div>
@@ -232,10 +231,10 @@ function ZeenatApp() {
       <section className="mx-auto max-w-6xl px-4 pt-4">
         <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
           {[
-            { icon: "🚚", label: "Har shehar delivery" },
+            { icon: "🚚", label: "Nationwide Delivery" },
             { icon: "💵", label: "Cash on Delivery" },
-            { icon: "🔄", label: "7 din return" },
-            { icon: "⭐", label: "100% asli items" },
+            { icon: "🔄", label: "7-Day Returns" },
+            { icon: "⭐", label: "100% Authentic Items" },
           ].map((t) => (
             <div
               key={t.label}
@@ -287,7 +286,7 @@ function ZeenatApp() {
         <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 className="font-display text-3xl font-bold sm:text-4xl">
-              {saleOnly ? "Sale Items" : category === "Sab" ? "Hamari Collection" : category}
+              {saleOnly ? "Sale Items" : category === "All" ? "Our Collection" : category}
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
               {filtered.length} items · 12 brands · Cash on Delivery
@@ -298,8 +297,8 @@ function ZeenatApp() {
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Kya dhoond rahe hain?"
-              aria-label="Products search karein"
+              placeholder="What are you looking for?"
+              aria-label="Search products"
               className="w-full rounded-full border border-border bg-card py-2.5 pr-4 pl-9 text-sm outline-none transition placeholder:text-muted-foreground focus:border-gold"
             />
           </div>
@@ -307,17 +306,17 @@ function ZeenatApp() {
 
         {filtered.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-border bg-card p-10 text-center">
-            <p className="font-display text-xl font-bold">Koi item nahi mila</p>
+            <p className="font-display text-xl font-bold">No products found</p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Doosra naam try karein ya WhatsApp par poochein — hum dhoond kar bata dein ge.
+              Try another name or ask us on WhatsApp — we will help you find it.
             </p>
             <a
-              href={waLink(`Assalam o Alaikum! Mujhe ye item chahiye: ${search || "..."}`)}
+              href={waLink(`Hello! I would like this item: ${search || "..."}`)}
               target="_blank"
               rel="noreferrer"
               className="mt-4 inline-flex items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-bold text-whatsapp-foreground"
             >
-              <WhatsAppIcon /> WhatsApp par poochein
+              <WhatsAppIcon /> Ask on WhatsApp
             </a>
           </div>
         ) : (
@@ -369,13 +368,13 @@ function ZeenatApp() {
                     onClick={() => addToCart(p.id)}
                     className="flex-1 rounded-full bg-primary py-2 text-xs font-bold text-primary-foreground transition hover:opacity-90"
                   >
-                    {cart[p.id] ? `Baskit mein hai (${cart[p.id]})` : "Baskit mein daalein"}
+                    {cart[p.id] ? `In cart (${cart[p.id]})` : "Add to cart"}
                   </button>
                   <a
-                    href={waLink(`Assalam o Alaikum! Mujhe ye item chahiye: ${p.name} (${formatRs(p.price)}) — Zeenat Collection`)}
+                    href={waLink(`Hello! I would like this item: ${p.name} (${formatRs(p.price)}) — Zeenat Collection`)}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={`WhatsApp par order: ${p.name}`}
+                    aria-label={`Order on WhatsApp: ${p.name}`}
                     className="flex items-center justify-center rounded-full bg-whatsapp px-3 text-whatsapp-foreground transition hover:opacity-90"
                   >
                     <WhatsAppIcon />
@@ -404,38 +403,38 @@ function ZeenatApp() {
             </ul>
           </div>
           <div className="flex flex-col rounded-2xl border border-border bg-card p-6">
-            <h3 className="font-display text-xl font-bold">WhatsApp par Order</h3>
+            <h3 className="font-display text-xl font-bold">Order on WhatsApp</h3>
             <p className="mt-2 text-sm text-muted-foreground text-pretty">
-              Koi bhi item pasand aaye to photo ya naam WhatsApp kar dein. Hum
-              foran confirm karein ge aur cash on delivery se bhej dein ge.
+              Send us the name or photo of your favourite item on WhatsApp. We
+              will confirm your order and send it with cash on delivery.
             </p>
             <a
-              href={waLink("Assalam o Alaikum! Mujhe order karna hai.")}
+              href={waLink("Hello! I would like to place an order.")}
               target="_blank"
               rel="noreferrer"
               className="mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 pt-3 text-sm font-bold text-whatsapp-foreground transition hover:opacity-90"
             >
-              <WhatsAppIcon /> Abhi baat karein
+              <WhatsAppIcon /> Chat Now
             </a>
           </div>
           <div className="rounded-2xl border border-border bg-card p-6">
-            <h3 className="font-display text-xl font-bold">Scan se Dhoondain</h3>
+            <h3 className="font-display text-xl font-bold">Find by Barcode</h3>
             <p className="mt-2 text-sm text-muted-foreground text-pretty">
-              Dukaan par kisi bhi price tag ka barcode scan karein aur item ki
-              price aur details foran dekhein.
+              Scan a price tag barcode and ask us on WhatsApp for the
+              product price and details.
             </p>
             <button
               onClick={() => setScanOpen(true)}
               className="mt-4 inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-semibold transition hover:border-gold"
             >
-              <ScanIcon /> Scanner kholein
+              <ScanIcon /> Open Scanner
             </button>
           </div>
         </section>
 
         <section className="mt-14" aria-labelledby="faq-heading">
           <h2 id="faq-heading" className="font-display text-3xl font-bold">
-            Aksar Pooche Jane Wale Sawal (FAQ)
+            Frequently Asked Questions
           </h2>
           <div className="mt-6 space-y-3">
             {FAQS.map((f) => (
@@ -456,12 +455,12 @@ function ZeenatApp() {
               Zeenat Collection
             </span>
             <p className="text-xs tracking-[0.2em] text-primary-foreground/70 uppercase">
-              Karachi · Poore Pakistan mein delivery
+              Karachi · Delivery across Pakistan
             </p>
           </div>
           <div className="flex gap-6 text-xs font-semibold tracking-wider text-primary-foreground/80 uppercase sm:ml-auto">
             <Link to="/about" className="underline">About Us</Link>
-            <span>7 din return</span>
+            <span>7-Day Returns</span>
             <span>Cash on Delivery</span>
             <span>12 Brands</span>
           </div>
@@ -470,10 +469,10 @@ function ZeenatApp() {
 
       {/* Floating WhatsApp button */}
       <a
-        href={waLink("Assalam o Alaikum! Mujhe Zeenat Collection se order karna hai.")}
+        href={waLink("Hello! I would like to place an order with Zeenat Collection.")}
         target="_blank"
         rel="noreferrer"
-        aria-label="WhatsApp par order karein"
+        aria-label="Order on WhatsApp"
         className="fixed right-4 bottom-4 z-50 inline-flex items-center gap-2 rounded-full bg-whatsapp px-5 py-3.5 text-sm font-bold text-whatsapp-foreground shadow-xl transition hover:scale-105"
       >
         <WhatsAppIcon /> Order on WhatsApp
@@ -525,10 +524,10 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
   const startScan = async () => {
     setError(null);
     setResult(null);
-    // BarcodeDetector sirf kuch browsers mein hota hai
+    // BarcodeDetector is available in some browsers only
     const BD = (window as unknown as { BarcodeDetector?: new (o?: object) => { detect: (v: HTMLVideoElement) => Promise<{ rawValue: string }[]> } }).BarcodeDetector;
     if (!BD) {
-      setError("Aap ka browser scan support nahi karta. Barcode number likh kar WhatsApp kar dein.");
+      setError("Your browser does not support scanning. Send the barcode number to us on WhatsApp.");
       return;
     }
     try {
@@ -550,7 +549,7 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
       };
       tick();
     } catch {
-      setError("Camera ki ijazat nahi mili. Barcode number likh kar WhatsApp kar dein.");
+      setError("Camera access is unavailable. Send the barcode number to us on WhatsApp.");
     }
   };
 
@@ -569,11 +568,11 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
             onClick={onClose}
             className="rounded-full border border-border px-3 py-1 text-sm font-semibold hover:border-gold"
           >
-            Band karein
+            Close
           </button>
         </div>
         <p className="mt-2 text-sm text-muted-foreground">
-          Camera ko price tag ke barcode ke saamne rakhein.
+          Point your camera at the barcode on the price tag.
         </p>
         <video
           id="scan-video"
@@ -583,14 +582,14 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
         />
         {result && (
           <div className="mt-4 rounded-2xl bg-secondary p-4 text-sm">
-            <p className="font-bold">Barcode mil gaya: {result}</p>
+            <p className="font-bold">Barcode found: {result}</p>
             <a
-              href={waLink(`Assalam o Alaikum! Mujhe is barcode wala item chahiye: ${result}`)}
+              href={waLink(`Hello! I would like the item with this barcode: ${result}`)}
               target="_blank"
               rel="noreferrer"
               className="mt-3 inline-flex items-center gap-2 rounded-full bg-whatsapp px-4 py-2 text-xs font-bold text-whatsapp-foreground"
             >
-              <WhatsAppIcon /> Ye item WhatsApp par poochein
+              <WhatsAppIcon /> Ye item Ask on WhatsApp
             </a>
           </div>
         )}
@@ -602,7 +601,7 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
             onClick={startScan}
             className="mt-4 w-full rounded-full bg-primary py-3 text-sm font-bold text-primary-foreground transition hover:opacity-90"
           >
-            Camera se Scan karein
+            Scan with Camera
           </button>
         )}
       </div>
@@ -654,7 +653,7 @@ function CartDrawer({
   const orderLines = items
     .map((x, i) => `${i + 1}. ${x.product.name} x${x.qty} — ${formatRs(x.product.price * x.qty)}`)
     .join("\n");
-  const msg = `Assalam o Alaikum! Mujhe ye order karna hai (Zeenat Collection):\n\n${orderLines}\n\nSubtotal: ${formatRs(subtotal)}\nDelivery: ${deliveryFee === 0 ? "FREE" : formatRs(deliveryFee)}\nTotal: ${formatRs(total)}\n\nNaam: \nShehar: \nPoora address: `;
+  const msg = `Hello! I would like to place this order (Zeenat Collection):\n\n${orderLines}\n\nSubtotal: ${formatRs(subtotal)}\nDelivery: ${deliveryFee === 0 ? "FREE" : formatRs(deliveryFee)}\nTotal: ${formatRs(total)}\n\nName: \nCity: \nFull address: `;
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-foreground/60" onClick={onClose}>
@@ -663,27 +662,27 @@ function CartDrawer({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-border px-5 py-4">
-          <h3 className="font-display text-xl font-bold">Aap ka Baskit</h3>
+          <h3 className="font-display text-xl font-bold">Your Cart</h3>
           <button
             onClick={onClose}
             className="rounded-full border border-border px-3 py-1 text-sm font-semibold hover:border-gold"
           >
-            Band karein
+            Close
           </button>
         </div>
 
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-2 p-8 text-center">
             <span className="text-3xl" aria-hidden="true">🛍️</span>
-            <p className="font-display text-lg font-bold">Baskit khali hai</p>
+            <p className="font-display text-lg font-bold">Your cart is empty</p>
             <p className="text-sm text-muted-foreground">
-              Items pasand karein aur "Baskit mein daalein" dabayein.
+              Your next favourite is waiting in our collection.
             </p>
             <button
               onClick={onClose}
               className="mt-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
             >
-              Khareedari shuru karein
+              Start Shopping
             </button>
           </div>
         ) : (
@@ -702,12 +701,12 @@ function CartDrawer({
                   <div className="min-w-0 flex-1">
                     <h4 className="truncate text-sm font-bold">{x.product.name}</h4>
                     <p className="text-xs text-muted-foreground">
-                      {formatRs(x.product.price)} har aik
+                      {formatRs(x.product.price)} each
                     </p>
                     <div className="mt-1.5 flex items-center gap-2">
                       <button
                         onClick={() => onQty(x.product.id, x.qty - 1)}
-                        aria-label={`${x.product.name} kam karein`}
+                        aria-label={`${x.product.name} decrease quantity`}
                         className="size-6 rounded-full border border-border text-sm font-bold"
                       >
                         −
@@ -715,7 +714,7 @@ function CartDrawer({
                       <span className="w-5 text-center text-sm font-bold">{x.qty}</span>
                       <button
                         onClick={() => onQty(x.product.id, x.qty + 1)}
-                        aria-label={`${x.product.name} zyada karein`}
+                        aria-label={`${x.product.name} increase quantity`}
                         className="size-6 rounded-full border border-border text-sm font-bold"
                       >
                         +
@@ -724,7 +723,7 @@ function CartDrawer({
                         onClick={() => onRemove(x.product.id)}
                         className="ml-auto text-[11px] font-semibold text-sale underline"
                       >
-                        Hataein
+                        Remove
                       </button>
                     </div>
                   </div>
@@ -737,11 +736,11 @@ function CartDrawer({
             <div className="border-t border-border p-4">
               {deliveryFee === 0 ? (
                 <p className="mb-2 rounded-full bg-whatsapp/10 px-3 py-1.5 text-center text-xs font-bold text-whatsapp">
-                  🎉 Mubarak! Delivery FREE hai
+                  🎉 Your delivery is FREE
                 </p>
               ) : (
                 <p className="mb-2 rounded-full bg-accent px-3 py-1.5 text-center text-xs font-bold text-accent-foreground">
-                  {formatRs(5000 - subtotal)} aur — delivery FREE ho jaye gi!
+                  {formatRs(5000 - subtotal)} more for FREE delivery!
                 </p>
               )}
               <dl className="space-y-1.5 text-sm">
@@ -759,7 +758,7 @@ function CartDrawer({
                 </div>
               </dl>
               <p className="mt-1 text-[11px] text-muted-foreground">
-                Doosre shehar ki delivery Rs 350 hai — WhatsApp par confirm ho gi.
+                Delivery to other cities is Rs 350 — confirmed on WhatsApp.
               </p>
               <a
                 href={waLink(msg)}
