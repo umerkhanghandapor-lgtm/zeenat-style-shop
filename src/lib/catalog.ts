@@ -20,7 +20,7 @@ import gentsJeans from "@/assets/gents-jeans.jpg";
 import abaya from "@/assets/abaya.jpg";
 import bridalMaxi from "@/assets/bridal-maxi.jpg";
 
-export const WHATSAPP_NUMBER = "923001234567"; // TODO: apna WhatsApp number yahan likhein
+export const WHATSAPP_NUMBER = "923001234567"; // TODO: replace with the store’s real WhatsApp number
 
 export type Product = {
   id: number;
@@ -36,7 +36,7 @@ export type Product = {
 };
 
 export const CATEGORIES = [
-  "Sab",
+  "All",
   "Ladies",
   "Gents",
   "Kids",
@@ -45,7 +45,7 @@ export const CATEGORIES = [
   "Jewellery",
   "Bags",
   "Dupatta",
-  "Chasma",
+  "Sunglasses",
   "Crochet",
   "Caps & Umbrella",
 ];
@@ -56,7 +56,7 @@ export const PRODUCTS: Product[] = [
   { id: 3, name: "Handmade Crochet Tote", category: "Crochet", brand: "Zeenat Handmade", price: 1700, oldPrice: 2000, rating: 4.9, reviews: 156, image: crochetBag, tag: "sale" },
   { id: 4, name: "Kundan Bangle Set", category: "Jewellery", brand: "Zeenat Jewels", price: 2450, oldPrice: 2900, rating: 4.7, reviews: 203, image: bangles, tag: "sale" },
   { id: 5, name: "Gold Embroidered Khussa", category: "Shoes", brand: "Zeenat Steps", price: 2800, rating: 4.8, reviews: 174, image: khussa, tag: "new" },
-  { id: 6, name: "Fashion Chasma UV400", category: "Chasma", brand: "Zeenat Optics", price: 1500, oldPrice: 2200, rating: 4.5, reviews: 128, image: sunglasses, tag: "sale" },
+  { id: 6, name: "Fashion Sunglasses UV400", category: "Sunglasses", brand: "Zeenat Optics", price: 1500, oldPrice: 2200, rating: 4.5, reviews: 128, image: sunglasses, tag: "sale" },
   { id: 7, name: "Floral School Bag", category: "Kids", brand: "Zeenat Kids", price: 1600, oldPrice: 2100, rating: 4.6, reviews: 96, image: schoolBag, tag: "sale" },
   { id: 8, name: "Chiffon Embroidered Dupatta", category: "Dupatta", brand: "Zeenat Lawn", price: 1450, oldPrice: 2400, rating: 4.9, reviews: 231, image: dupatta, tag: "sale" },
   { id: 9, name: "Luxury Makeup Set", category: "Makeup", brand: "Zeenat Beauty", price: 3200, rating: 4.7, reviews: 185, image: makeup, tag: "new" },
@@ -78,9 +78,9 @@ export const PRODUCTS: Product[] = [
 ];
 
 export const DELIVERY = [
-  { label: "Karachi ke andar", value: "Rs 200" },
-  { label: "Doosre shehar", value: "Rs 350" },
-  { label: "Rs 5,000 se zyada order", value: "FREE" },
+  { label: "Within Karachi", value: "Rs 200" },
+  { label: "Other cities", value: "Rs 350" },
+  { label: "Orders of Rs 5,000 or more", value: "FREE" },
   { label: "Cash on Delivery", value: "Available" },
 ];
 
@@ -89,11 +89,11 @@ export function waLink(message: string) {
 }
 
 export const FAQS = [
-  { q: "Order kaise karein?", a: "Product ko cart mein add karein aur 'WhatsApp par order' button dabayein. Hum WhatsApp par aap se rabta kar ke order confirm karenge." },
-  { q: "Delivery charges kitne hain?", a: "Rs 5,000 ya us se zyada ke order par delivery free hai. Karachi mein Rs 200 aur baqi Pakistan mein Rs 350 delivery charges hain." },
-  { q: "Kya cash on delivery available hai?", a: "Ji haan, pooray Pakistan mein cash on delivery available hai — parcel milne par payment karein." },
-  { q: "Delivery mein kitne din lagte hain?", a: "Karachi mein 1-2 din aur baqi shehron mein 3-5 working days mein order pohanch jata hai." },
-  { q: "Kya product wapas ya exchange ho sakta hai?", a: "Ji haan, 7 din ke andar unused product exchange ya return ho sakta hai. WhatsApp par rabta karein." },
+  { q: "How do I place an order?", a: "Add products to your cart and select 'Order on WhatsApp'. We will contact you on WhatsApp to confirm your order." },
+  { q: "What are the delivery charges?", a: "Delivery is free for orders of Rs 5,000 or more. Delivery costs Rs 200 within Karachi and Rs 350 elsewhere in Pakistan." },
+  { q: "Is cash on delivery available?", a: "Yes, cash on delivery is available across Pakistan. Pay when you receive your parcel." },
+  { q: "How long does delivery take?", a: "Orders arrive in 1–2 days within Karachi and 3–5 working days in other cities." },
+  { q: "Can I return or exchange a product?", a: "Yes, unused products can be returned or exchanged within 7 days. Contact us on WhatsApp." },
 ];
 
 export function formatRs(n: number) {

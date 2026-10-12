@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Zeenat Collection" },
-      { name: "description", content: "Zeenat Collection — ladies, gents aur kids fashion, ek jagah." },
+      { name: "description", content: "Zeenat Collection — fashion for women, men and kids, all in one place." },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Zeenat Collection" },
       { name: "twitter:card", content: "summary_large_image" },
