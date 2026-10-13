@@ -177,7 +177,7 @@ function ZeenatApp() {
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full bg-whatsapp px-4 py-2 text-xs font-bold text-whatsapp-foreground shadow-sm transition hover:opacity-90"
             >
-              <WhatsAppIcon / Inbox
+              <WhatsAppIcon /> Inbox
             </a>
           </div>
         </div>
