@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { getGaId } from "../lib/analytics.functions";
 
 function NotFoundComponent() {
   return (
@@ -74,7 +75,16 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
+  loader: () => getGaId(),
+  head: ({ loaderData }) => ({
+    scripts: loaderData?.gaId
+      ? [
+          { src: `https://www.googletagmanager.com/gtag/js?id=${loaderData.gaId}`, async: true },
+          {
+            children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${loaderData.gaId}');`,
+          },
+        ]
+      : [],
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
