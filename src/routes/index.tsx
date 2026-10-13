@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Zeenat Collection — clothing for women, men and kids, shoes, makeup, jewellery, bags, dupattas and handmade crochet. Order on WhatsApp with cash on delivery across Pakistan.",
+          "Zeenat Collection — clothing for women, men and kids, shoes, makeup, jewellery, bags, dupattas and handmade crochet. Send Order Message with cash on delivery across Pakistan.",
       },
       {
         name: "keywords",
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Clothing, shoes, makeup, jewellery, bags and crochet — all in one place. Order on WhatsApp.",
+          "Clothing, shoes, makeup, jewellery, bags and crochet — all in one place. Send Order Message.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://zeenat-style-shop.lovable.app/" },
@@ -135,8 +135,8 @@ function ZeenatApp() {
           {[0, 1].map((i) => (
             <span key={i} className="px-4">
               ✦ Sale — Up to 40% off ✦ Cash on Delivery ✦ Delivery across Pakistan
-              ✦ Order on WhatsApp ✦ Sale — Up to 40% off ✦
-              Cash on Delivery ✦ Delivery across Pakistan ✦ Order on WhatsApp ✦
+              ✦ Send Order Message ✦ Sale — Up to 40% off ✦
+              Cash on Delivery ✦ Delivery across Pakistan ✦ Send Order Message ✦
             </span>
           ))}
         </div>
@@ -173,11 +173,11 @@ function ZeenatApp() {
             </button>
             <a
               href={waLink("Hello! I would like to place an order with Zeenat Collection.")}
-              target="_blank"
+             
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full bg-whatsapp px-4 py-2 text-xs font-bold text-whatsapp-foreground shadow-sm transition hover:opacity-90"
             >
-              <WhatsAppIcon /> WhatsApp
+              <WhatsAppIcon / Inbox
             </a>
           </div>
         </div>
@@ -215,11 +215,11 @@ function ZeenatApp() {
                 </a>
                 <a
                   href={waLink("Hello! I would like to see the new collection at Zeenat Collection.")}
-                  target="_blank"
+                 
                   rel="noreferrer"
                   className="rounded-full border border-primary-foreground/40 px-6 py-3 text-sm font-semibold transition hover:bg-primary-foreground/10"
                 >
-                  Contact on WhatsApp
+                  Message Us
                 </a>
               </div>
             </div>
@@ -308,15 +308,15 @@ function ZeenatApp() {
           <div className="rounded-2xl border border-dashed border-border bg-card p-10 text-center">
             <p className="font-display text-xl font-bold">No products found</p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Try another name or ask us on WhatsApp — we will help you find it.
+              Try another name or ask us through our Inbox — we will help you find it.
             </p>
             <a
               href={waLink(`Hello! I would like this item: ${search || "..."}`)}
-              target="_blank"
+             
               rel="noreferrer"
               className="mt-4 inline-flex items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-bold text-whatsapp-foreground"
             >
-              <WhatsAppIcon /> Ask on WhatsApp
+              <WhatsAppIcon /> Ask in Inbox
             </a>
           </div>
         ) : (
@@ -372,9 +372,9 @@ function ZeenatApp() {
                   </button>
                   <a
                     href={waLink(`Hello! I would like this item: ${p.name} (${formatRs(p.price)}) — Zeenat Collection`)}
-                    target="_blank"
+                   
                     rel="noreferrer"
-                    aria-label={`Order on WhatsApp: ${p.name}`}
+                    aria-label={`Send Order Message: ${p.name}`}
                     className="flex items-center justify-center rounded-full bg-whatsapp px-3 text-whatsapp-foreground transition hover:opacity-90"
                   >
                     <WhatsAppIcon />
@@ -403,14 +403,14 @@ function ZeenatApp() {
             </ul>
           </div>
           <div className="flex flex-col rounded-2xl border border-border bg-card p-6">
-            <h3 className="font-display text-xl font-bold">Order on WhatsApp</h3>
+            <h3 className="font-display text-xl font-bold">Send Order Message</h3>
             <p className="mt-2 text-sm text-muted-foreground text-pretty">
-              Send us the name or photo of your favourite item on WhatsApp. We
+              Send us the name or photo of your favourite item through our Inbox. We
               will confirm your order and send it with cash on delivery.
             </p>
             <a
               href={waLink("Hello! I would like to place an order.")}
-              target="_blank"
+             
               rel="noreferrer"
               className="mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 pt-3 text-sm font-bold text-whatsapp-foreground transition hover:opacity-90"
             >
@@ -420,7 +420,7 @@ function ZeenatApp() {
           <div className="rounded-2xl border border-border bg-card p-6">
             <h3 className="font-display text-xl font-bold">Find by Barcode</h3>
             <p className="mt-2 text-sm text-muted-foreground text-pretty">
-              Scan a price tag barcode and ask us on WhatsApp for the
+              Scan a price tag barcode and ask us through our Inbox for the
               product price and details.
             </p>
             <button
@@ -470,12 +470,12 @@ function ZeenatApp() {
       {/* Floating WhatsApp button */}
       <a
         href={waLink("Hello! I would like to place an order with Zeenat Collection.")}
-        target="_blank"
+       
         rel="noreferrer"
-        aria-label="Order on WhatsApp"
+        aria-label="Send Order Message"
         className="fixed right-4 bottom-4 z-50 inline-flex items-center gap-2 rounded-full bg-whatsapp px-5 py-3.5 text-sm font-bold text-whatsapp-foreground shadow-xl transition hover:scale-105"
       >
-        <WhatsAppIcon /> Order on WhatsApp
+        <WhatsAppIcon /> Send Order Message
       </a>
 
       {scanOpen && <ScanDialog onClose={() => setScanOpen(false)} />}
@@ -527,7 +527,7 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
     // BarcodeDetector is available in some browsers only
     const BD = (window as unknown as { BarcodeDetector?: new (o?: object) => { detect: (v: HTMLVideoElement) => Promise<{ rawValue: string }[]> } }).BarcodeDetector;
     if (!BD) {
-      setError("Your browser does not support scanning. Send the barcode number to us on WhatsApp.");
+      setError("Your browser does not support scanning. Send the barcode number to us through our Inbox.");
       return;
     }
     try {
@@ -549,7 +549,7 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
       };
       tick();
     } catch {
-      setError("Camera access is unavailable. Send the barcode number to us on WhatsApp.");
+      setError("Camera access is unavailable. Send the barcode number to us through our Inbox.");
     }
   };
 
@@ -585,7 +585,7 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
             <p className="font-bold">Barcode found: {result}</p>
             <a
               href={waLink(`Hello! I would like the item with this barcode: ${result}`)}
-              target="_blank"
+             
               rel="noreferrer"
               className="mt-3 inline-flex items-center gap-2 rounded-full bg-whatsapp px-4 py-2 text-xs font-bold text-whatsapp-foreground"
             >
@@ -609,7 +609,7 @@ function ScanDialog({ onClose }: { onClose: () => void }) {
   );
 }
 
-function WhatsAppIcon() {
+functithrough our InboxIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="size-4 shrink-0" aria-hidden="true">
       <path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.2L2 22l4.9-1.6A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 1 1-4.1 15.1l-.3-.2-2.9 1 1-2.9-.2-.3a8.1 8.1 0 0 1 6.5-12.7Zm-3.1 3.9c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.5 1 2.6c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3l-1.7-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.1-.2 0-.4.1-.5l.5-.6c.1-.2.1-.3.2-.5v-.5L9.6 8c-.2-.4-.4-.3-.6-.3h-.1Z" />
@@ -758,15 +758,15 @@ function CartDrawer({
                 </div>
               </dl>
               <p className="mt-1 text-[11px] text-muted-foreground">
-                Delivery to other cities is Rs 350 — confirmed on WhatsApp.
+                Delivery to other cities is Rs 350 — confirmed through our Inbox.
               </p>
               <a
                 href={waLink(msg)}
-                target="_blank"
+               
                 rel="noreferrer"
                 className="mt-3 flex items-center justify-center gap-2 rounded-full bg-whatsapp py-3 text-sm font-bold text-whatsapp-foreground transition hover:opacity-90"
               >
-                <WhatsAppIcon /> Order on WhatsApp
+                <WhatsAppIcon /> Send Order Message
               </a>
             </div>
           </>

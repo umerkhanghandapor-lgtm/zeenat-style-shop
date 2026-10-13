@@ -84,8 +84,9 @@ export const DELIVERY = [
   { label: "Cash on Delivery", value: "Available" },
 ];
 
+/** Opens the in-app Inbox message form (handled by InboxDialog). */
 export function waLink(message: string) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  return `#message=${encodeURIComponent(message)}`;
 }
 
 export const FAQS = [

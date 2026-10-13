@@ -12,7 +12,7 @@ export const Route = createFileRoute("/product/$id")({
     const p = loaderData?.product;
     if (!p) return { meta: [{ title: "Product Not Found — Zeenat Collection" }] };
     const title = `${p.name} — ${formatRs(p.price)} | Zeenat Collection`;
-    const desc = `Shop ${p.name} (${p.category}, ${p.brand}) for ${formatRs(p.price)}. Order on WhatsApp with cash on delivery across Pakistan.`;
+    const desc = `Shop ${p.name} (${p.category}, ${p.brand}) for ${formatRs(p.price)}. Send Order Message with cash on delivery across Pakistan.`;
     const url = `${SITE}/product/${params.id}`;
     return {
       meta: [
@@ -69,11 +69,11 @@ function ProductPage() {
           <p className="mt-1 text-sm text-muted-foreground">★ {p.rating} ({p.reviews} reviews)</p>
           <a
             href={waLink(`Hello! I would like this item: ${p.name} (${formatRs(p.price)}) — Zeenat Collection`)}
-            target="_blank"
+           
             rel="noreferrer"
             className="mt-5 inline-block rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground"
           >
-            Order on WhatsApp
+            Send Order Message
           </a>
         </div>
       </div>
