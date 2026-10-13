@@ -74,7 +74,7 @@ function AboutPage() {
         <li>Delivery in 1–2 days within Karachi and 3–5 days in other cities</li>
         <li>Free delivery on orders of Rs 5,000 or more</li>
         <li>7-day returns and exchanges</li>
-        <li>Direct contact and ordering on WhatsApp</li>
+        <li>Direct contact and ordering through our Inbox</li>
       </ul>
 
       <h2 className="font-display mt-8 text-2xl font-bold">Frequently Asked Questions</h2>
