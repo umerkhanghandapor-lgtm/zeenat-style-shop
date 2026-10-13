@@ -12,7 +12,6 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { getGaId } from "../lib/analytics.functions";
 import { InboxDialog } from "../components/InboxDialog";
 
 function NotFoundComponent() {
@@ -75,17 +74,16 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
+const GA_MEASUREMENT_ID = "G-65RRENZ971";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  loader: () => getGaId(),
-  head: ({ loaderData }) => ({
-    scripts: loaderData?.gaId
-      ? [
-          { src: `https://www.googletagmanager.com/gtag/js?id=${loaderData.gaId}`, async: true },
-          {
-            children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${loaderData.gaId}');`,
-          },
-        ]
-      : [],
+  head: () => ({
+    scripts: [
+      { src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`, async: true },
+      {
+        children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');`,
+      },
+    ],
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
