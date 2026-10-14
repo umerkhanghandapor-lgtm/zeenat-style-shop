@@ -465,6 +465,9 @@ function ZeenatApp() {
             <span>12 Brands</span>
           </div>
         </div>
+        <p className="mx-auto max-w-6xl px-4 pb-8 text-center text-sm text-primary-foreground/80">
+          © 2026 Zeenat Fashion Hub - All Rights Reserved. Designed by Zeenat
+        </p>
       </footer>
 
       {/* Floating WhatsApp button */}
