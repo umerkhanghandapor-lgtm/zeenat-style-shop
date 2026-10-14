@@ -8,6 +8,13 @@
       "when": 1791797575981,
       "tag": "0000_create_shop_messages",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791938199297,
+      "tag": "0001_harden_shop_message_access",
+      "breakpoints": true
     }
   ]
 }
